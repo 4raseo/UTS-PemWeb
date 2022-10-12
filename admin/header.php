@@ -36,7 +36,7 @@
     <header class="main-header">
       <a href="index.php" class="logo">
         <span class="logo-mini"><i class="fa fa-code"></i></span>
-        <span class="logo-lg">FORUM_<b>PRGRMR</b></span>
+        <span class="logo-lg">ADMIN FORUM</span>
       </a>
 
       <nav class="navbar navbar-static-top">

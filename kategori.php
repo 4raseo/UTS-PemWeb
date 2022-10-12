@@ -1,11 +1,10 @@
 <?php include 'header.php'; ?>
 
-
 <div class="container-fluid">
 
   <div class="row">
-
-    <div class="col-lg-9">
+  <?php include 'sidebar.php'; ?>
+    <div class="col-lg-10">
 
       <div class="card">
         <div class="card-body">
@@ -181,7 +180,7 @@
 
     </div>
 
-    <?php include 'sidebar.php'; ?>
+    
 
   </div>
 </div>

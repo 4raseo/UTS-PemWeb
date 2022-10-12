@@ -22,9 +22,8 @@
             <h3 class="box-title">Edit Member</h3>
             <a href="member.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
           </div>
+
           <div class="box-body">
-
-
             <?php 
             $id = $_GET['id'];
             $data = mysqli_query($koneksi,"select * from member where member_id='$id'");
@@ -62,6 +61,14 @@
                   <label>Foto Profil</label>
                   <input type="file" name="foto">
                   <small class="text-muted">Kosongkan jika tidak ingin mengganti foto profil</small>
+                </div>
+
+                <div class="form-group">
+                  <label>Status</label>
+                  <select class="form-control" name="status">
+                    <option value="banned" <?php if($d['member_status'] == "banned"){ echo "selected"; } ?>>Banned</option>
+                    <option value="aktif" <?php if($d['member_status'] == "aktif"){ echo "selected"; } ?>>Aktif</option>
+                  </select>
                 </div>
 
                 <div class="form-group">

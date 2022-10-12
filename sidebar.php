@@ -1,4 +1,4 @@
- <div class="col-lg-3">
+ <div class="col-lg-2">
 
 
  	<a href="posting.php" class="btn btn-primary btn-block mb-4 shadow">POSTING DISKUSI BARU</a>

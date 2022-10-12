@@ -6,23 +6,31 @@ include 'koneksi.php';
 $email = $_POST['email'];
 $password = md5($_POST['password']);
 
-$login = mysqli_query($koneksi, "SELECT * FROM member WHERE member_email='$email' AND member_password='$password'");
-$cek = mysqli_num_rows($login);
+// cek apakah status member aktif atau banned
+$cek_status = mysqli_query($koneksi, "SELECT * FROM member WHERE member_email='$email' AND member_password='$password' AND member_status='aktif'");
+$cek_status_member = mysqli_num_rows($cek_status);
 
-if($cek > 0){
-	session_start();
-	$data = mysqli_fetch_assoc($login);
+if($cek_status_member > 0) {
+	$login = mysqli_query($koneksi, "SELECT * FROM member WHERE member_email='$email' AND member_password='$password'");
+	$cek = mysqli_num_rows($login);
 
-	// hapus session yg lain, agar tidak bentrok dengan session member
-	unset($_SESSION['id']);
-	unset($_SESSION['nama']);
-	unset($_SESSION['username']);
-	unset($_SESSION['status']);
+	if($cek > 0){
+		session_start();
+		$data = mysqli_fetch_assoc($login);
 
-	// buat session member
-	$_SESSION['member_id'] = $data['member_id'];
-	$_SESSION['member_status'] = "login";
-	header("location:member.php");
+		// hapus session yg lain, agar tidak bentrok dengan session member
+		unset($_SESSION['id']);
+		unset($_SESSION['nama']);
+		unset($_SESSION['username']);
+		unset($_SESSION['status']);
+
+		// buat session member
+		$_SESSION['member_id'] = $data['member_id'];
+		$_SESSION['member_status'] = "login";
+		header("location:member.php");
+	}else{
+		header("location:masuk.php?alert=gagal");
+	}
 }else{
-	header("location:masuk.php?alert=gagal");
+	header("location:masuk.php?alert=banned");
 }
